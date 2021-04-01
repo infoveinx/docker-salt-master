@@ -1,0 +1,38 @@
+version: "3.8" 
+services:
+  salt_master:
+    container_name: salt_master
+    image: infoveinx/salt-master:3003
+    networks:
+      - saltnet
+    ports:
+      - "4505-4506:4505-4506/tcp"
+    restart: unless-stopped
+    volumes:
+      - "salt_pki:/etc/salt/pki"
+      - "salt_cache:/var/salt/cache"
+      - "salt_logs:/var/logs/salt"
+      - "/opt/docker_volumes/salt-master/gpgkeys:/etc/salt/gpgkeys"
+      - "/opt/docker_volumes/salt-master/ssh_keys:/root/.ssh"
+      - "/opt/docker_volumes/salt-master/master.d:/etc/salt/master.d:ro"
+      - "/opt/docker_volumes/salt-master/roster:/etc/salt/roster"
+      - "/opt/docker_volumes/salt-master/srv:/srv"
+      - "/opt/docker_volumes/salt-master/cloud.providers.d:/etc/salt/cloud.providers.d"
+      - "/opt/docker_volumes/salt-master/cloud.profiles.d:/etc/salt/cloud.profiles.d"
+
+
+networks:
+  saltnet:
+    driver: bridge
+    name: saltnet
+    ipam:
+      config:
+        - subnet: 10.150.150.0/24
+
+volumes:
+  salt_pki:
+    name: salt_pki
+  salt_cache:
+    name: salt_cache
+  salt_logs:
+    name: salt_logs
