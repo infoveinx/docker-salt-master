@@ -2,7 +2,7 @@ version: "3.8"
 services:
   salt_master:
     container_name: salt_master
-    image: infoveinx/salt-master:3003.1
+    image: infoveinx/salt-master:3004.2-01
     networks:
       - saltnet
     ports:
