@@ -3,4 +3,4 @@
 ## Configuration
 
 ## Docker
-- docker pull infoveinx/salt-master:3005.1-1
+- docker pull infoveinx/salt-master:3006.9
