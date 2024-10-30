@@ -14,8 +14,11 @@ RUN curl -fsSL -o /etc/apt/keyrings/${salt_local_key_name} https://repo.saltproj
 RUN echo "deb [signed-by=/etc/apt/keyrings/${salt_local_key_name} arch=amd64] https://repo.saltproject.io/salt/py3/debian/${debian_version}/amd64/minor/${salt_version} ${debian_codename} main" | tee /etc/apt/sources.list.d/salt.list
 
 RUN apt-get update
-RUN apt-get install -y salt-master salt-ssh salt-cloud python3-git
+RUN apt-get install -y salt-master salt-minion salt-ssh salt-cloud python3-git
+
+COPY run.sh /
+RUN chmod +x /run.sh
 
 EXPOSE 4505/tcp 4506/tcp
 
-ENTRYPOINT exec /usr/bin/salt-master --log-level=info
+CMD ["/run.sh"]

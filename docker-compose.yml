@@ -15,6 +15,7 @@ services:
       - "/opt/docker_volumes/salt-master/gpgkeys:/etc/salt/gpgkeys"
       - "/opt/docker_volumes/salt-master/ssh_keys:/root/.ssh"
       - "/opt/docker_volumes/salt-master/master.d:/etc/salt/master.d:ro"
+      - "/opt/docker_volumes/salt-master/minion.d:/etc/salt/minion.d:ro"
       - "/opt/docker_volumes/salt-master/roster:/etc/salt/roster"
       - "/opt/docker_volumes/salt-master/srv:/srv"
       - "/opt/docker_volumes/salt-master/cloud.providers.d:/etc/salt/cloud.providers.d"
