@@ -1,5 +1,7 @@
 FROM debian:12.7-slim
 
+ARG DEBIAN_FRONTEND=noninteractive
+
 ENV salt_version=3006.9
 ENV debian_version=12
 ENV debian_codename=bookworm
