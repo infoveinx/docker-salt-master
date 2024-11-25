@@ -1,13 +1,15 @@
-FROM debian:12.7-slim
+FROM debian:12.8-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV salt_version=3007.1
+ENV salt_version=3006.9
 ENV debian_version=12
 ENV debian_codename=bookworm
 RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install -y curl gnupg2 procps
+
+RUN groupadd --gid 2101 salt && useradd --uid 2101 salt -g salt --shell /usr/sbin/nologin -d /opt/saltstack
 
 RUN mkdir -p /etc/apt/keyrings
 RUN curl -fsSL -o /etc/apt/keyrings/salt-archive-keyring.pgp https://packages.broadcom.com/artifactory/api/security/keypair/SaltProjectKey/public

@@ -1,8 +1,7 @@
-version: "3.8" 
 services:
   salt_master:
     container_name: salt_master
-    image: infoveinx/salt-master:3007.1
+    image: infoveinx/salt-master:3006.9
     networks:
       - saltnet
     ports:
@@ -20,8 +19,8 @@ services:
       - "/opt/docker_volumes/salt-master/srv:/srv"
       - "/opt/docker_volumes/salt-master/cloud.providers.d:/etc/salt/cloud.providers.d"
       - "/opt/docker_volumes/salt-master/cloud.profiles.d:/etc/salt/cloud.profiles.d"
-
-
+    environment:
+      SALT_MINION_ENABLE: 'False'
 networks:
   saltnet:
     driver: bridge

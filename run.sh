@@ -3,12 +3,14 @@
 # turn on bash's job control
 set -m
 
-# Start the primary process and put it in the background
-/usr/bin/salt-master --log-level=info &
+# Start salt-master and put it in the background
+su -s /bin/bash -c '/usr/bin/salt-master --log-level=info' salt &
 
-# Start the helper process
-/usr/bin/salt-minion --log-level=info
+# Start salt-minion
+if [ ! -z "$SALT_MINION_ENABLE" ] && [ "$SALT_MINION_ENABLE" == "True" ]; then
+  /usr/bin/salt-minion --log-level=info
+fi
 
-# now we bring the primary process back into the foreground
+# bring salt-master process back into the foreground
 # and leave it there
 fg %1
