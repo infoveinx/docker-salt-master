@@ -2,7 +2,7 @@ FROM debian:12.8-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV salt_version=3006.9
+ENV salt_version=3007.1
 ENV debian_version=12
 ENV debian_codename=bookworm
 RUN apt-get update

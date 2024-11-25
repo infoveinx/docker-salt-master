@@ -1,7 +1,7 @@
 services:
   salt_master:
     container_name: salt_master
-    image: infoveinx/salt-master:3006.9
+    image: infoveinx/salt-master:3007.1
     networks:
       - saltnet
     ports:
